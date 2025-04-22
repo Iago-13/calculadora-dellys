@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Descarga - Dellys</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="logo">
+    <img src="https://www.dellys.com.br/file/v9149539743230295202/general/Logo.png" alt="Logo Dellys" />
+  </div>
+  <div class="container">
+    <h1>Calculadora de Descarga - Dellys</h1>
+
+    <label for="tipo">Tipo de Descarga:</label>
+    <select id="tipo">
+      <option value="descarga_paletizada_ton">Descarga Paletizada (Ton/Pallet) - R$42</option>
+      <option value="descarga_paletizada_pallet">Descarga Paletizada (Pallet) - R$20</option>
+      <option value="descarga_estivada">Descarga Estivada (Ton/Pallet) - R$90</option>
+      <option value="strech">Aplicação de Strech (Ton/Pallet) - R$15</option>
+      <option value="etiquetagem">Etiquetagem (Caixa) - R$1.5</option>
+      <option value="carga_tombada">Carga Tombada (Ton/Pallet) - R$90</option>
+      <option value="movimentacao">Movimentação de Pallet (Ton/Pallet) - R$24</option>
+    </select>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" placeholder="Insira a quantidade" />
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      const tipo = document.getElementById('tipo').value;
+      const qtd = parseFloat(document.getElementById('quantidade').value);
+      if (isNaN(qtd) || qtd < 0) {
+        document.getElementById('resultado').textContent = 'Insira uma quantidade válida.';
+        return;
+      }
+
+      const precos = {
+        descarga_paletizada_ton: 42,
+        descarga_paletizada_pallet: 20,
+        descarga_estivada: 90,
+        strech: 15,
+        etiquetagem: 1.5,
+        carga_tombada: 90,
+        movimentacao: 24
+      };
+
+      const total = precos[tipo] * qtd;
+      document.getElementById('resultado').textContent = `Valor Total: R$ ${total.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
